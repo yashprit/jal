@@ -1,0 +1,41 @@
+{
+  "name": "data-structure-in-javascript",
+  "version": "0.0.0",
+  "description": "common data structure implementation in javascript",
+
+  "author": {
+    "name": "Yashprit Singh",
+    "email": "yashprit@gmail.com",
+    "url": "www.twitter.com/yashprit"
+  },
+  "repository": "yashprit/data-structure-in-javascript",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "data-structure-in-javascript",
+    "datastructure",
+    "javascript"
+  ],
+  "dependencies": {
+    "meow": "^2.0.0"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^1.0.0",
+    "time-grunt": "^1.0.0",
+    "grunt-mocha-cli": "^1.11.0",
+    "jshint-stylish": "^1.0.0"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "bin": {
+    "data-structure-in-javascript": "cli.js"
+  }
+}
