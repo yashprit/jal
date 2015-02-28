@@ -6,16 +6,16 @@
 ## Install
 
 ```sh
-$ npm install --save _ds
+$ npm install --save jal
 ```
 
 
 ## Usage
 
 ```js
-var _ds = require('_ds');
+var jal = require('jal');
 
-_ds('Rainbow');
+jal('Rainbow');
 ```
 
 ```sh
@@ -32,10 +32,10 @@ $ npm run browser
 
 MIT © [Yashprit](yashprit.github.io)
 
-[issue-url]: https://github.com/yashprit/_ds/issues
-[npm-url]: https://npmjs.org/package/_ds
-[npm-image]: https://badge.fury.io/js/_ds.svg
-[travis-url]: https://travis-ci.org/yashprit/_ds
-[travis-image]: https://travis-ci.org/yashprit/_ds.svg?branch=master
-[daviddm-url]: https://david-dm.org/yashprit/_ds.svg?theme=shields.io
-[daviddm-image]: https://david-dm.org/yashprit/_ds
+[issue-url]: https://github.com/yashprit/jal/issues
+[npm-url]: https://npmjs.org/package/jal
+[npm-image]: https://badge.fury.io/js/jal.svg
+[travis-url]: https://travis-ci.org/yashprit/jal
+[travis-image]: https://travis-ci.org/yashprit/jal.svg?branch=master
+[daviddm-url]: https://david-dm.org/yashprit/jal.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/yashprit/jal

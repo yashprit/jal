@@ -1,17 +1,17 @@
 'use strict';
 var expect = require('chai').expect;
-var _ds = require('../lib/');
+var jal = require('../lib/');
 
 describe("Running Stack Test", function(){
 	
 	var stack;
   beforeEach(function() {
-    stack = new _ds.Stack();
+    stack = new jal.Stack();
   });
 	
 	describe('Stack#constuctor()', function () {
 	  it('Should initialize stack as empty array', function () {
-	    expect(stack).to.be.an.instanceof(_ds.Stack);
+	    expect(stack).to.be.an.instanceof(jal.Stack);
 	  });
 		
 	  it('Should have _top property', function () {
