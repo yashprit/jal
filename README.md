@@ -32,10 +32,10 @@ $ npm run browser
 
 MIT © [Yashprit](yashprit.github.io)
 
-[issue-url]: https://github.com/yashprit/data-structure-in-javascript/issues
-[npm-url]: https://npmjs.org/package/data-structure-in-javascript
-[npm-image]: https://badge.fury.io/js/data-structure-in-javascript.svg
-[travis-url]: https://travis-ci.org/yashprit/data-structure-in-javascript
-[travis-image]: https://travis-ci.org/yashprit/data-structure-in-javascript.svg?branch=master
-[daviddm-url]: https://david-dm.org/yashprit/data-structure-in-javascript.svg?theme=shields.io
-[daviddm-image]: https://david-dm.org/yashprit/data-structure-in-javascript
+[issue-url]: https://github.com/yashprit/_ds/issues
+[npm-url]: https://npmjs.org/package/_ds
+[npm-image]: https://badge.fury.io/js/_ds.svg
+[travis-url]: https://travis-ci.org/yashprit/_ds
+[travis-image]: https://travis-ci.org/yashprit/_ds.svg?branch=master
+[daviddm-url]: https://david-dm.org/yashprit/_ds.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/yashprit/_ds
