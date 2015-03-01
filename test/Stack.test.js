@@ -41,6 +41,11 @@ describe("Running Stack Test", function(){
 	    var item = stack.pop();
 	    expect(item).to.equal(6);
 	  });
+
+	  it('Should return undefined, if stack is empty', function () {
+	    var item = stack.pop();
+	    expect(item).to.be.undefined;
+	  });
 		
 	  it('Should remove one element from stack', function () {
 			stack.push(5);
@@ -52,8 +57,8 @@ describe("Running Stack Test", function(){
 	});
 
 	describe('Stack#getTop()', function () {
-	  it('Should return null if stack is empty', function () {
-			expect(stack.getTop()).to.be.null;
+	  it('Should return undefined if stack is empty', function () {
+			expect(stack.getTop()).to.be.undefined;
 	  });
 		
 	  it('Should return top element on stack', function () {
