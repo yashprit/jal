@@ -23,21 +23,36 @@ describe("Running Stack Test", function(){
 	  });
 	});
 	
-	describe('SingleLinkedList#size()', function () {
+	describe('SingleLinkedList#count()', function () {
 	  it('should have size 0', function () {
 	    expect(sll._length).to.be.equal(0);
 	  });
 	});
 	
-	describe('SingleLinkedList#insertLast()', function () {
+	describe('SingleLinkedList#append()', function () {
 	  it('should add new element', function () {
-	    sll.insertLast(2);
+	    sll.append(2);
 			expect(sll._first).not.to.be.null;
 	  });
 		
 	  it('last elemnet next should be null', function () {
-	    sll.insertLast(2);
+	    sll.append(2);
 			expect(sll._first._next).to.be.null;
 	  });
 	});
+	
+	describe('SingleLinkedList#first()', function () {
+	  it('should add new element at first', function () {
+	    sll.first(2);
+			expect(sll._first._value).to.be.equal(2);
+	  });
+		
+	  it('last elemnet next should be null', function () {
+	    sll.last(2);
+			sll.last(3);
+			sll.first(5)
+			expect(sll._first._value).to.be.equal(5);
+	  });
+	});
+	
 });

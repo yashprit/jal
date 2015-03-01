@@ -23,6 +23,11 @@ jal('Rainbow');
 $ npm run browser
 ```
 
+```sh
+# to run test
+$ npm test
+```
+
 
 ##Report Issue 
 [issue-url]
