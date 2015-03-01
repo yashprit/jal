@@ -30,7 +30,7 @@ $ npm run browser
 
 ## License
 
-MIT © [Yashprit](yashprit.github.io)
+MIT © jal
 
 [issue-url]: https://github.com/yashprit/jal/issues
 [npm-url]: https://npmjs.org/package/jal
