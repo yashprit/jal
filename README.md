@@ -39,7 +39,7 @@ MIT © jal
 
 [issue-url]: https://github.com/yashprit/jal/issues
 [npm-url]: https://npmjs.org/package/jal
-[npm-image]: https://badge.fury.io/js/jal.svg
+[npm-image]: https://img.shields.io/npm/v/jal.svg
 [travis-url]: https://travis-ci.org/yashprit/jal
 [travis-image]: https://travis-ci.org/yashprit/jal.svg?branch=master
 [daviddm-url]: https://david-dm.org/yashprit/jal.svg?theme=shields.io
