@@ -78,25 +78,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.last(3);
       sll.first(5);
       var element = sll.pop();
-      expect(element._data).to.have.length.below(2);
-    });
-  });
-
-  describe('SingleLinkedList#pop()', function() {
-    it('should pop last element from linkedlist', function() {
-      sll.last(2);
-      sll.last(3);
-      sll.first(5);
-      var element = sll.pop()
-      expect(element._data).to.be.equal(3);
-    });
-
-    it('should modify length of linkedlist', function() {
-      sll.last(2);
-      sll.last(3);
-      sll.first(5);
-      var element = sll.pop();
-      expect(element._data).to.have.length.below(2);
+      expect(sll.count()).to.be.equal(2);
     });
   });
 
@@ -113,14 +95,14 @@ describe("Running SingleLinkedList Test", function() {
       sll.last(2);
       sll.last(3);
       sll.first(5);
-      expect(sll.after.bind(6, 2)).to.throw("index should be less than count");
+      expect(sll.after.bind(sll, 6, 2)).to.throw(/index should be less than count/);
     });
 
     it('index should not be less than 0', function() {
       sll.last(2);
       sll.last(3);
       sll.first(5);
-      expect(sll.before.bind(-1, 2)).to.throw("invalid index");
+      expect(sll.after.bind(sll, -1, 2)).to.throw(/invalid index/);
     });
   });
 
@@ -137,14 +119,14 @@ describe("Running SingleLinkedList Test", function() {
       sll.last(2);
       sll.last(3);
       sll.first(5);
-      expect(sll.before.bind(6, 2)).to.throw("index should be less than count");
+      expect(sll.before.bind(sll, 6, 2)).to.throw(/index should be less than count/);
     });
 
     it('index should not be less than 0', function() {
       sll.last(2);
       sll.last(3);
       sll.first(5);
-      expect(sll.before.bind(-1, 2)).to.throw("invalid index");
+      expect(sll.before.bind(sll, -1, 2)).to.throw(/invalid index/);
     });
   });
 
