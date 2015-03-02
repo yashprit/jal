@@ -1,4 +1,4 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Dev Dependency Status][daviddmdev-url]][daviddm-image]
 
 > common data structure implementation in javascript
 
@@ -23,13 +23,13 @@ jal('Rainbow');
 $ npm run browser
 ```
 
+##To Run Test
 ```sh
-# to run test
 $ npm test
 ```
 
 
-##Report Issue 
+##Report Issue
 [issue-url]
 
 
@@ -43,4 +43,6 @@ MIT © jal
 [travis-url]: https://travis-ci.org/yashprit/jal
 [travis-image]: https://travis-ci.org/yashprit/jal.svg?branch=master
 [daviddm-url]: https://david-dm.org/yashprit/jal.svg?theme=shields.io
+[daviddmdev-url]: https://david-dm.org/yashprit/jal/dev-status.svg?theme=shields.io
 [daviddm-image]: https://david-dm.org/yashprit/jal
+
