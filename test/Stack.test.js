@@ -8,42 +8,6 @@ describe("Running Stack Test", function() {
   beforeEach(function() {
     stack = new jal.Stack();
   });
-
-<<<<<<< HEAD
-	describe('Stack#pop()', function () {
-	  it('Should return last inserted element from stack', function () {
-			stack.push(6);
-	    var item = stack.pop();
-	    expect(item).to.equal(6);
-	  });
-
-	  it('Should return undefined, if stack is empty', function () {
-	    var item = stack.pop();
-	    expect(item).to.be.undefined;
-	  });
-		
-	  it('Should remove one element from stack', function () {
-			stack.push(5);
-			stack.push(4);
-	    var currentLength = stack._stack.length;
-	    stack.pop();
-			expect(stack._stack).to.have.length.below(currentLength);
-	  });
-	});
-
-	describe('Stack#getTop()', function () {
-	  it('Should return undefined if stack is empty', function () {
-			expect(stack.getTop()).to.be.undefined;
-	  });
-		
-	  it('Should return top element on stack', function () {
-	    stack.push(3);
-	    stack.push(2);
-	    expect(stack.getTop()).to.equal(2);
-	  });
-	});
-});
-=======
   describe('Stack#constuctor()', function() {
     it('Should initialize stack as empty array', function() {
       expect(stack).to.be.an.instanceof(jal.Stack);
@@ -71,6 +35,10 @@ describe("Running Stack Test", function() {
   });
 
   describe('Stack#pop()', function() {
+    it('Should throw error if stack is empty', function() {
+      expect(stack.pop.bind(stack)).to.throw("Stack underflow");
+    });
+
     it('Should return last inserted element from stack', function() {
       stack.push(6);
       var item = stack.pop();
@@ -86,16 +54,15 @@ describe("Running Stack Test", function() {
     });
   });
 
-  describe('Stack#getTop()', function() {
+  describe('Stack#peek()', function() {
     it('Should return null if stack is empty', function() {
-      expect(stack.getTop()).to.be.null;
+      expect(stack.peek()).to.be.null;
     });
 
     it('Should return top element on stack', function() {
       stack.push(3);
       stack.push(2);
-      expect(stack.getTop()).to.equal(2);
+      expect(stack.peek()).to.equal(2);
     });
   });
 });
->>>>>>> 19e496e780f98c34b6a3498aff57c05f8750b0c7
