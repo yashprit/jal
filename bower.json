@@ -28,7 +28,7 @@
     "test",
     "tests",
     "lib",
-    "documentation-output",
+    "docs",
     "resources",
     ".editorconfig",
     ".gitattributes",

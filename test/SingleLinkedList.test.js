@@ -25,12 +25,6 @@ describe("Running SingleLinkedList Test", function() {
     });
   });
 
-  describe('SingleLinkedList#count()', function() {
-    it('should have size 0', function() {
-      expect(sll._length).to.be.equal(0);
-    });
-  });
-
   describe('SingleLinkedList#last()', function() {
     it('should add new element', function() {
       sll.last(2);
@@ -66,31 +60,13 @@ describe("Running SingleLinkedList Test", function() {
     });
   });
 
-  describe('SingleLinkedList#pop()', function() {
-    it('should pop last element from linkedlist', function() {
-      sll.last(2);
-      sll.last(3);
-      sll.first(5);
-      var element = sll.pop()
-      expect(element._data).to.be.equal(3);
-    });
-
-    it('should modify length of linkedlist', function() {
-      sll.last(2);
-      sll.last(3);
-      sll.first(5);
-      var element = sll.pop();
-      expect(sll.count()).to.be.equal(2);
-    });
-  });
-
   describe('SingleLinkedList#after()', function() {
     it('should insert node after provided index from start', function() {
       sll.last(2);
       sll.last(3);
       sll.first(5);
       sll.after(2, 2);
-      expect(sll.count()).to.be.equal(4);
+      expect(sll.size()).to.be.equal(4);
     });
 
     it('index should not be greater than count of existing linkedlist', function() {
@@ -114,7 +90,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.last(3);
       sll.first(5);
       sll.before(2, 2);
-      expect(sll.count()).to.be.equal(4);
+      expect(sll.size()).to.be.equal(4);
     });
 
     it('index should not be greater than count of existing linkedlist', function() {
@@ -151,28 +127,36 @@ describe("Running SingleLinkedList Test", function() {
   });
 
   describe('SingleLinkedList#pop()', function() {
+
+    it('should modify length of linkedlist', function() {
+      sll.last(2);
+      sll.last(3);
+      sll.first(5);
+      var element = sll.pop();
+      expect(sll.size()).to.be.equal(2);
+    });
+
     it('should pop element from linkedlist, and update size', function() {
       sll.push(2);
       sll.push(3);
       sll.first(4);
-      ssl.pop();
-      expect(ssl.size()).to.be.below(3);
+      sll.pop();
+      expect(sll.size()).to.be.below(3);
     });
+
     it('should pop element from linked list and return it', function() {
       sll.push(2);
       sll.push(3);
       sll.first(4);
-      var node = ssl.removeAt(1);
+      var node = sll.pop();
       expect(node).to.eql({
         _data: 3,
         _next: null
       });
     });
+
     it('should throw error if no more element found', function() {
-      sll.push(2);
-      sll.push(3);
-      sll.first(4);
-      expect(ssl.removeAt.call(ssl, 8)).to.throw(/linkedlist size is zero/);
+      expect(sll.pop.bind(sll, 8)).to.throw(/linkedlist size is zero/);
     });
   });
 
@@ -181,14 +165,14 @@ describe("Running SingleLinkedList Test", function() {
       sll.push(2);
       sll.push(3);
       sll.first(4);
-      ssl.removeAt(1);
-      expect(ssl.size()).to.be.below(3);
+      sll.removeAt(1);
+      expect(sll.size()).to.be.below(3);
     });
     it('should remove element from index and return node', function() {
       sll.push(2);
       sll.push(3);
       sll.first(4);
-      var node = ssl.removeAt(1);
+      var node = sll.removeAt(1);
       expect(node).to.eql({
         _data: 3,
         _next: null
@@ -198,8 +182,59 @@ describe("Running SingleLinkedList Test", function() {
       sll.push(2);
       sll.push(3);
       sll.first(4);
-      expect(ssl.removeAt.call(ssl, 8)).to.throw(/index is greater than size of linked list/);
+      expect(sll.removeAt.bind(sll, 8)).to.throw(/index is greater than size of linked list/);
     });
   });
 
+  describe('SingleLinkedList#print()', function() {
+    it('should print linkedlist', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      var string = sll.print();
+      expect(string).to.be.equal("[2,3,4]")
+    });
+  });
+
+  describe('SingleLinkedList#toString()', function() {
+    it('toString method of linkedlist', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      var string = sll.toString();
+      expect(string).to.be.equal("[2,3,4]")
+    });
+  });
+
+  describe('SingleLinkedList#size()', function() {
+    it('should have size 0', function() {
+      expect(sll.size()).to.be.equal(0);
+    });
+
+    it('should return size of linked list', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      var count = sll.size();
+      expect(count).to.be.equal(3);
+    });
+  });
+
+  describe('SingleLinkedList#createCircular()', function() {
+    it('should create cicular linked list', function() {
+      sll.createCircular(2);
+      sll.createCircular(3);
+      sll.createCircular(4);
+      expect(sll._first).not.to.be.null;
+    });
+  });
+
+  describe('SingleLinkedList#isCircular()', function() {
+    it('should return true', function() {
+      sll.createCircular(2);
+      sll.createCircular(3);
+      sll.createCircular(4);
+      expect(sll.isCircular()).to.be.true;
+    });
+  });
 });

@@ -1,4 +1,4 @@
-#jal  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Dev Dependency Status][daviddmdev-url]][daviddm-image]
+#jal  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Dev Dependency Status][daviddmdev-image]][daviddm-url] [![Bower version][bower-image]][bower-url]
 
 > common data structure implementation in javascript
 
@@ -46,4 +46,7 @@ MIT © jal
 [daviddm-url]: https://david-dm.org/yashprit/jal.svg?theme=shields.io
 [daviddmdev-url]: https://david-dm.org/yashprit/jal/dev-status.svg?theme=shields.io
 [daviddm-image]: https://david-dm.org/yashprit/jal
+[bower-url]: http://bower.io/search/?q=owner:yashprit
+[bower-image]: https://badge.fury.io/bo/jal@2x.png
+[![Bower version](https://badge.fury.io/bo/jal@2x.png)](http://badge.fury.io/bo/jal)
 
