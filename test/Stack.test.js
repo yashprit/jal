@@ -1,6 +1,6 @@
 'use strict';
 var expect = require('chai').expect;
-var jal = require('../lib/');
+var jal = require('../lib/Jal.js');
 
 describe("Running Stack Test", function() {
 

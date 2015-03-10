@@ -1,3 +1,46 @@
+/**
+ * MIT (c) Yashprit 2015
+ *
+ * JAL a data structure library
+ *
+ * https://github.com/yashprit
+ * http://yashprit.github.io/
+ *
+ * Version: 0.0.0-alpha
+ *
+ * Source Code https://github.com/yashprit/jal
+ *
+ * The MIT License
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.JAL = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  SingleLinkedList: require("./adt/SingleLinkedList"),
+  Stack: require("./adt/Stack")
+}
+
+
+},{"./adt/SingleLinkedList":2,"./adt/Stack":3}],2:[function(require,module,exports){
 'use strict';
 // Problems http://cslibrary.stanford.edu/105/
 // http://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
@@ -286,3 +329,61 @@ LinkedList.prototype.isCircular = function isCircular() {
 }
 
 module.exports = LinkedList;
+
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+/**
+ * constructor of the stack
+ */
+function Stack() {
+  this._stack = [];
+  this._top = -1;
+}
+
+Stack.prototype = {
+
+  /**
+   * push element to stack
+   * and increment stack top
+   *
+   * .push(item)
+   *
+   * @param (String) item
+   */
+  push: function push(item) {
+    this._top++;
+    this._stack[this._top] = item;
+  },
+
+  /**
+   * pop element from stack
+   * and decrement stack top, returns poped element
+   *
+   * .pop(item)
+   *
+   * @return (string) item
+   */
+  pop: function pop() {
+    this._top--;
+    return this._stack.pop()
+  },
+
+  /**
+   * returns top element on stack
+   *
+   * .top()
+   *
+   * @return (string) item
+   */
+  getTop: function top() {
+    return this._top !== -1 ? this._stack[this._top] : null;
+  }
+}
+
+module.exports = Stack;
+
+
+},{}]},{},[1])(1)
+});

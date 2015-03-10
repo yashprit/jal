@@ -1,6 +1,8 @@
 'use strict';
 var expect = require('chai').expect;
-var jal = require('../lib/');
+var jal = require('../lib/Jal.js');
+
+console.log(jal);
 
 describe("Running SingleLinkedList Test", function() {
 
@@ -35,7 +37,7 @@ describe("Running SingleLinkedList Test", function() {
       expect(sll._head).not.to.be.null;
     });
 
-    it('last elemnet next should be null', function() {
+    it('last element next should be null', function() {
       sll.last(2);
       expect(sll._head._next).to.be.null;
     });
@@ -141,6 +143,62 @@ describe("Running SingleLinkedList Test", function() {
     it('alias for .last()', function() {
       sll.last(2);
       expect(sll._head).not.to.be.null;
+    });
+    it('should push at end of linkedlist', function() {
+      sll.push(2);
+      expect(sll._head).not.to.be.null;
+    });
+  });
+
+  describe('SingleLinkedList#pop()', function() {
+    it('should pop element from linkedlist, and update size', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      ssl.pop();
+      expect(ssl.size()).to.be.below(3);
+    });
+    it('should pop element from linked list and return it', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      var node = ssl.removeAt(1);
+      expect(node).to.eql({
+        _data: 3,
+        _next: null
+      });
+    });
+    it('should throw error if no more element found', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      expect(ssl.removeAt.call(ssl, 8)).to.throw(/linkedlist size is zero/);
+    });
+  });
+
+  describe('SingleLinkedList#removeAt()', function() {
+    it('should remove element from index and update size', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      ssl.removeAt(1);
+      expect(ssl.size()).to.be.below(3);
+    });
+    it('should remove element from index and return node', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      var node = ssl.removeAt(1);
+      expect(node).to.eql({
+        _data: 3,
+        _next: null
+      });
+    });
+    it('should throw error if index is greater than size', function() {
+      sll.push(2);
+      sll.push(3);
+      sll.first(4);
+      expect(ssl.removeAt.call(ssl, 8)).to.throw(/index is greater than size of linked list/);
     });
   });
 

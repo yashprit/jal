@@ -1,42 +1,60 @@
 {
-	"name": "jal",
-	"version": "0.0.0-alpha",
-	"description": "common data structure implementation in javascript",
-	"bugs": {
-		"url": "https://github.com/yashprit/jal/issues"
-	},
-	"author": {
-		"url": "yashprit.github.io",
-		"name": "Yashprit",
-		"email": "yashprit@gmail.com"
+  "name": "jal",
+  "version": "0.0.0-alpha",
+  "description": "common data structure implementation in javascript",
+  "bugs": {
+    "url": "https://github.com/yashprit/jal/issues"
   },
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/yashprit/jal"
+  "author": {
+    "url": "yashprit.github.io",
+    "name": "Yashprit",
+    "email": "yashprit@gmail.com"
   },
-	"license": "MIT",
-	"files": [
-		"index.js"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashprit/jal"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
   ],
-	"keywords": [
-		"data-structure-in-javascript",
-		"Data Structure",
-		"Javascript",
-		"Stack",
-		"Queue",
-		"LinkedList"
-	],
-	"dependencies": {},
+  "keywords": [
+    "data-structure-in-javascript",
+    "Data Structure",
+    "Javascript",
+    "Stack",
+    "Queue",
+    "LinkedList"
+  ],
+  "dependencies": {},
   "devDependencies": {
-		"gulp": "^3.8.11",
-		"gulp-cli": "^0.1.5",
-		"gulp-jshint": "^1.9.2",
-		"gulp-mocha": "^2.0.0",
-		"chai": "^2.1.0",	
-		"jshint-stylish": "^1.0.0"
+    "browserify": "^9.0.3",
+    "chai": "^2.1.0",
+    "deamdify": "^0.1.1",
+    "debowerify": "^1.2.0",
+    "decomponentify": "^0.1.0",
+    "deglobalify": "^0.2.0",
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-cli": "^0.1.5",
+    "gulp-filesize": "0.0.6",
+    "gulp-header": "^1.2.2",
+    "gulp-jshint": "^1.9.2",
+    "gulp-mocha": "^2.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4",
+    "jshint-stylish": "^1.0.0",
+    "reactify": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0",
+    "watchify": "^2.4.0"
   },
   "scripts": {
-		"test": "gulp test",
-		"browser": "browserify index.js > browser.js"
-	}
+    "test": "gulp test",
+    "build": "gulp build",
+    "browser": "browserify lib/jal.js --standalone  -o browser.js"
+  }
 }
