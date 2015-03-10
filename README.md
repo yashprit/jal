@@ -4,6 +4,7 @@
 
 
 ## Install
+[![NPM](https://nodei.co/npm/jal.png?mini=true)](https://nodei.co/npm/jal/)
 
 ```sh
 $ npm install --save jal

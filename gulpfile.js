@@ -22,7 +22,8 @@ var
   gutil = require('gulp-util'),
   filesize = require('gulp-filesize'),
   header = require("gulp-header"),
-  pkg = require('./package.json');
+  pkg = require('./package.json'),
+  jsdoc2md = require("gulp-jsdoc-to-markdown");
 
 
 // Get version from package.json
@@ -68,7 +69,7 @@ gulp.task('watch', function() {
 
 gulp.task('doc', function() {
   gulp.src("./lib/**/*.js")
-    .pipe(jsdoc('./documentation-output'))
+    .pipe(jsdoc('./doc'))
 });
 
 gulp.task('clean', function() {
@@ -76,6 +77,18 @@ gulp.task('clean', function() {
       read: false
     })
     .pipe(clean());
+});
+
+gulp.task("docs", function() {
+  return gulp.src("lib/**/*.js")
+    .pipe(jsdoc2md())
+    .on("error", function(err) {
+      gutil.log(gutil.colors.red("jsdoc2md failed"), err.message)
+    })
+    .pipe(rename(function(path) {
+      path.extname = ".md";
+    }))
+    .pipe(gulp.dest("api"));
 });
 
 gulp.task('browserify', function() {

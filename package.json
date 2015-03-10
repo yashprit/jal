@@ -39,6 +39,7 @@
     "gulp-cli": "^0.1.5",
     "gulp-filesize": "0.0.6",
     "gulp-header": "^1.2.2",
+    "gulp-jsdoc-to-markdown": "^0.1.6",
     "gulp-jshint": "^1.9.2",
     "gulp-mocha": "^2.0.0",
     "gulp-rename": "^1.2.0",

@@ -38,6 +38,7 @@
     "CONTRIBUTING.md",
     "gulpfile.js",
     "LICENSE",
-    "package.json"
+    "package.json",
+    "api"
   ]
 }
