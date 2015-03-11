@@ -69,7 +69,7 @@ gulp.task('watch', function() {
 
 gulp.task('docs:html', function() {
   gulp.src("./lib/**/*.js")
-    .pipe(jsdoc('./doc'))
+    .pipe(jsdoc('./doc/html'))
 });
 
 gulp.task('clean', function() {
@@ -88,7 +88,7 @@ gulp.task("docs:md", function() {
     .pipe(rename(function(path) {
       path.extname = ".md";
     }))
-    .pipe(gulp.dest("api"));
+    .pipe(gulp.dest("./doc/md"));
 });
 
 gulp.task('browserify', function() {
@@ -134,4 +134,4 @@ gulp.task('browserify', function() {
 
 gulp.task('build', ['lint', 'test', 'doc', 'clean', 'browserify']);
 gulp.task('default', ['lint', 'test', 'watch']);
-gulp.task('commit', ['docs:md', 'docs:html']);
+gulp.task('doc', ['docs:md', 'docs:html']);
