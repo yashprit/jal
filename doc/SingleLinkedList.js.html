@@ -32,8 +32,7 @@
 /**
  * @constructor
  */
-
-function Node(data, next) {
+function Node(data) {
   this._data = data;
   this._next = null;
 };
@@ -42,7 +41,6 @@ function Node(data, next) {
  * @constructor
  *
  */
-
 function LinkedList() {
   this._head = null;
   this._current = null;
@@ -50,40 +48,20 @@ function LinkedList() {
 };
 
 /**
- * internal method get particular index node from linkedList
+ * Overloaded Method
  *
- * @private
- *
- * @param {Number} index of node
- *
- * @returns it return node
- * @type Node
- */
-LinkedList.prototype._getNth = function(index) {
-  var currentIndex = 0;
-  var first = this._head;
-  while (first) {
-    if (currentIndex === index) {
-      return first;
-    }
-    first = first.next;
-    currentIndex++;
-  }
-}
-
-/**
- * add node to last in linkedlist, this is overloaded version
+ * insert node at first of linkedlist, this is overloaded version
+ * if no arguments passed than it will return Node otherwise set Node
  *
  * .first() get refernce of first value from linkedlist
  * .first(data) set node at first in linkedlist
  *
- * @private
+ * @param {String|Number|undefined} data is either String or Number
  *
- * @param {String|Number|undefined} data part of Node
+ * @return {Node} in case of getter otherwise undefined for case of setter
  *
- * @return {Node} in case if its not set
  */
-LinkedList.prototype.first = function last(data) {
+LinkedList.prototype.first = function first(data) {
   if (data) {
     var node = new Node(data);
     if (!this._head) {
@@ -99,16 +77,19 @@ LinkedList.prototype.first = function last(data) {
 };
 
 /**
- * insert node at first of linkedlist, this is overloaded version
+ * Overloaded Method
  *
- * .last() get refernce of first value from linkedlist
- * .last(data) set node at last
+ * insert node at last of linkedlist
+ * no arguments passed than it will return Node otherwise set Node
+ *
+ * .last(data) set node at last in linkedlist
+ * .last() get refernce of last value from linkedlist
  *
  * @param {String|Number|undefined} data either String or Number
  *
- * @return {Node} in case if its not set
+ * @return {Node} in case of getter otherwise undefined for case of setter
  */
-LinkedList.prototype.last = function first(data) {
+LinkedList.prototype.last = function last(data) {
   if (data) {
     var node = new Node(data);
     if (!this._head) {
@@ -124,17 +105,19 @@ LinkedList.prototype.last = function first(data) {
 };
 
 /**
- * Alias for last
+ * @alias last
  */
 LinkedList.prototype.append = function append(data) {
-  this.last(argument);
+  var args = Array.prototype.slice.call(arguments, 0);
+  this.last.apply(this, args);
 };
 
 /**
- * Alias for last
+ * @alias last
  */
 LinkedList.prototype.push = function push() {
-  this.last(argument);
+  var args = Array.prototype.slice.call(arguments, 0);
+  this.last.apply(this, args);
 };
 
 /**
@@ -142,15 +125,15 @@ LinkedList.prototype.push = function push() {
  *
  * .after(index, data)
  *
- * @param {String|Number} data, value to be inserted
- * @param {Number} index, inserting
+ * @param {String|Number} data value to be inserted
+ * @param {Number} index inserting
  */
 LinkedList.prototype.after = function after(index, data) {
   if (index &lt; 0) {
     throw new Error("invalid index");
   }
 
-  if (this.count() &lt; index) {
+  if (this.size() &lt; index) {
     throw new Error("index should be less than count");
   }
 
@@ -176,15 +159,15 @@ LinkedList.prototype.after = function after(index, data) {
  *
  * .before(index, data)
  *
- * @param {Number} index, add elemnet before this index
- * @param {String|Number}, value of node
+ * @param {Number} index add elemnet before this index
+ * @param {String|Number} value of node
  */
 LinkedList.prototype.before = function before(index, data) {
   if (index &lt; 0) {
     throw new Error("invalid index");
   }
 
-  if (this.count() &lt; index) {
+  if (this.size() &lt; index) {
     throw new Error("index should be less than count");
   }
 
@@ -212,8 +195,8 @@ LinkedList.prototype.before = function before(index, data) {
  *
  * @param {Number} index of node
  *
- * @returns return node at given index
- * @type Node
+ * @returns {Node} return node at given index
+ *
  */
 LinkedList.prototype.at = function at(index) {
   return this._getNth(index);
@@ -224,10 +207,13 @@ LinkedList.prototype.at = function at(index) {
  *
  * .pop()
  *
- * @returns last Node from LinkedList
- * @type Node
+ * @returns {Node} last Node from LinkedList
+ *
  */
 LinkedList.prototype.pop = function pop() {
+  if (this.size() === 0) {
+    throw new Error("linkedlist size is zero");
+  }
   var first = this._head;
   var index = 0;
   while (first) {
@@ -250,10 +236,113 @@ LinkedList.prototype.pop = function pop() {
  * @param {Number} index of Node that need to be removed
  *
  * @returns void
- * @type undefined
+ *
  */
 LinkedList.prototype.removeAt = function removeAt(index) {
+  if (index &lt; 0 || index > this.size()) {
+    throw new Error("index is not bound in linked list");
+  }
 
+  var iterator = this._head;
+  var currentIndex = 0;
+  while (iterator) {
+    if (currentIndex === index) {
+      this._head = iterator._next;
+      iterator._next = null;
+      this._length--;
+      return iterator;
+    } else {
+      iterator = iterator._next;
+      currentIndex++;
+    }
+  }
+}
+
+/**
+ *
+ * Print LinkedList
+ *
+ * .print()
+ *
+ * @return {String} Array like representation
+ *
+ */
+LinkedList.prototype.print = function print() {
+  var arr = []
+  var first = this._head;
+  while (first) {
+    arr.push(first._data);
+    first = first._next;
+  }
+  return "[" + arr.join(",") + "]";
+}
+
+/**
+ *
+ * overinding toString method it also alias to #print()
+ *
+ * .toString()
+ *
+ * @return {String} Array like representation
+ *
+ */
+LinkedList.prototype.toString = function toString() {
+  return this.print();
+}
+
+/**
+ * Get size of linkedList
+ *
+ * .size()
+ *
+ * @return {Number}
+ */
+LinkedList.prototype.size = function size() {
+  return this._length;
+}
+
+/**
+ * Utility method to create circular linkedlist
+ *
+ * .createCircular()
+ *
+ * @return {void}
+ *
+ */
+LinkedList.prototype.createCircular = function createCircular(data) {
+  var node = new Node(data);
+  if (!this._head) {
+    this._head = this._current = node;
+    node._next = this._head;
+  } else {
+    this._current.next = node;
+    this._current = node;
+    node._next = this._head;
+  }
+}
+
+/**
+ * Check for circular linkedlist
+ *
+ * .isCircular()
+ *
+ * @returns {Boolean} this linkedlist is circular
+ *
+ */
+LinkedList.prototype.isCircular = function isCircular() {
+  if (this._head == null) {
+    return false;
+  }
+  var fast = this._head;
+  var slow = this._head;
+  while (fast &amp;&amp; fast._next) {
+    if (fast._next._next == slow) {
+      return true;
+    }
+    fast = fast._next._next;
+    slow = slow._next;
+  }
+  return false;
 }
 
 /**
@@ -270,46 +359,25 @@ LinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
 }
 
 /**
- * Print LinkedList
+ * internal method get particular index node from linkedList
  *
- * .print()
+ * @private
  *
- * @returns all linkedlist
- * @type String
- */
-LinkedList.prototype.print = function print() {
-
-}
-
-/**
- * Get size of linkedList
+ * @param {Number} index of node
  *
- * .size()
- *
- * @return {Number}
- */
-LinkedList.prototype.count = function size() {
-  return this._length;
-}
-
-/**
- * Utility method to create circular linkedlist
+ * @returns {Node} it return node
  *
  */
-LinkedList.prototype.createCircular = function createCircular() {
-
-}
-
-/**
- * Check for circular linkedlist
- *
- * .isCircular()
- *
- * @returns this linkedlist is circular
- * @type Boolean
- */
-LinkedList.prototype.isCircular = function isCircular() {
-
+LinkedList.prototype._getNth = function(index) {
+  var currentIndex = 0;
+  var first = this._head;
+  while (first) {
+    if (currentIndex === index) {
+      return first;
+    }
+    first = first._next;
+    currentIndex++;
+  }
 }
 
 module.exports = LinkedList;
@@ -329,7 +397,7 @@ module.exports = LinkedList;
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Tue Mar 10 2015 18:21:41 GMT+0530 (IST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Wed Mar 11 2015 12:21:02 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>

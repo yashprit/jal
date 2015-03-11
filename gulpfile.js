@@ -67,7 +67,7 @@ gulp.task('watch', function() {
   gulp.watch(['<%= jshint.js.src %>', '<%= jshint.test.src %>'], ['lint', 'test']);
 });
 
-gulp.task('doc', function() {
+gulp.task('docs:html', function() {
   gulp.src("./lib/**/*.js")
     .pipe(jsdoc('./doc'))
 });
@@ -79,7 +79,7 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task("docs", function() {
+gulp.task("docs:md", function() {
   return gulp.src("lib/**/*.js")
     .pipe(jsdoc2md())
     .on("error", function(err) {
@@ -134,3 +134,4 @@ gulp.task('browserify', function() {
 
 gulp.task('build', ['lint', 'test', 'doc', 'clean', 'browserify']);
 gulp.task('default', ['lint', 'test', 'watch']);
+gulp.task('commit', ['docs:md', 'docs:html']);

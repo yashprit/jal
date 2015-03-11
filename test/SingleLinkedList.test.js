@@ -166,7 +166,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.push(3);
       sll.first(4);
       sll.removeAt(1);
-      expect(sll.size()).to.be.below(3);
+      expect(sll.size()).to.be.equal(2)
     });
     it('should remove element from index and return node', function() {
       sll.push(2);
@@ -174,7 +174,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.first(4);
       var node = sll.removeAt(1);
       expect(node).to.eql({
-        _data: 3,
+        _data: 2,
         _next: null
       });
     });
@@ -182,7 +182,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.push(2);
       sll.push(3);
       sll.first(4);
-      expect(sll.removeAt.bind(sll, 8)).to.throw(/index is greater than size of linked list/);
+      expect(sll.removeAt.bind(sll, 8)).to.throw(/index is not bound in linked list/);
     });
   });
 
@@ -192,7 +192,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.push(3);
       sll.first(4);
       var string = sll.print();
-      expect(string).to.be.equal("[2,3,4]")
+      expect(string).to.be.equal("[4,2,3]")
     });
   });
 
@@ -202,7 +202,7 @@ describe("Running SingleLinkedList Test", function() {
       sll.push(3);
       sll.first(4);
       var string = sll.toString();
-      expect(string).to.be.equal("[2,3,4]")
+      expect(string).to.be.equal("[4,2,3]")
     });
   });
 
