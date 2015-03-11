@@ -14,20 +14,18 @@ $ npm install --save jal
 ## Usage
 
 ```js
+//On NodeJS
 var jal = require('jal');
 
-jal('Rainbow');
+var linkedList = new jal.SingleLinkedList();
+linkedlist.add(1);
+
+//On Browser
+var linkedlist = new JAL.SingleLinkedList();
+linkedlist.add(2);
+
 ```
 
-```sh
-# creates a browser.js
-$ npm run browser
-```
-
-##To Run Test
-```sh
-$ npm test
-```
 
 
 ##Report Issue
