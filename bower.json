@@ -1,0 +1,44 @@
+{
+  "name": "jal",
+  "version": "0.0.0-alpha",
+  "homepage": "https://github.com/yashprit/jal",
+  "authors": [
+    "Yashprit Singh <yashprits@gmail.com>"
+  ],
+  "description": "javascript library for common data structure",
+  "main": "dist/jal.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "data",
+    "structure",
+    "linkedlist",
+    "stack",
+    "queue"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "lib",
+    "docs",
+    "resources",
+    ".editorconfig",
+    ".gitattributes",
+    "yo-rc.json",
+    ".jshintrc",
+    "travis.yml",
+    "CONTRIBUTING.md",
+    "gulpfile.js",
+    "LICENSE",
+    "package.json",
+    "api"
+  ]
+}
