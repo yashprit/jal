@@ -8,7 +8,6 @@ describe("Running Stack Test", function() {
   beforeEach(function() {
     stack = new jal.Stack();
   });
-
   describe('Stack#constuctor()', function() {
     it('Should initialize stack as empty array', function() {
       expect(stack).to.be.an.instanceof(jal.Stack);
@@ -36,6 +35,10 @@ describe("Running Stack Test", function() {
   });
 
   describe('Stack#pop()', function() {
+    it('Should throw error if stack is empty', function() {
+      expect(stack.pop.bind(stack)).to.throw("Stack underflow");
+    });
+
     it('Should return last inserted element from stack', function() {
       stack.push(6);
       var item = stack.pop();
@@ -51,15 +54,15 @@ describe("Running Stack Test", function() {
     });
   });
 
-  describe('Stack#getTop()', function() {
+  describe('Stack#peek()', function() {
     it('Should return null if stack is empty', function() {
-      expect(stack.getTop()).to.be.null;
+      expect(stack.peek()).to.be.null;
     });
 
     it('Should return top element on stack', function() {
       stack.push(3);
       stack.push(2);
-      expect(stack.getTop()).to.equal(2);
+      expect(stack.peek()).to.equal(2);
     });
   });
 });
