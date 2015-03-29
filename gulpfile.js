@@ -23,7 +23,10 @@ var
   filesize = require('gulp-filesize'),
   header = require("gulp-header"),
   pkg = require('./package.json'),
-  jsdoc2md = require("gulp-jsdoc-to-markdown");
+  jsdoc2md = require("gulp-jsdoc-to-markdown"),
+  to5 = require('gulp-6to5'),
+  es6Path = 'lib/adt/es6/*.js',
+  compilePath = 'lib/adt/es6/compiled';
 
 
 // Get version from package.json
@@ -103,7 +106,7 @@ gulp.task('browserify', function() {
   b.add("./lib/Jal.js");
   return b.bundle()
     .on('error', function(err) {
-      gutil.log(err.message)
+      gutil.log(err.message);
       this.emit('end');
     })
     .pipe(source('jal.js'))
@@ -129,6 +132,14 @@ gulp.task('browserify', function() {
       year: getYear()
     }))
     .pipe(gulp.dest('dist'))
+    .on('error', gutil.log);
+});
+
+gulp.task('6to5', function () {
+
+  gulp.src(es6Path)
+    .pipe(to5())
+    .pipe(gulp.dest(compilePath))
     .on('error', gutil.log)
 });
 
