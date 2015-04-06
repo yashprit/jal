@@ -6,9 +6,8 @@ describe("Running Stack Test", function() {
 
   var stack;
   beforeEach(function() {
-    stack = new jal.Stack();
+    stack = new jal.Stack(10);
   });
-
   describe('Stack#constuctor()', function() {
     it('Should initialize stack as empty array', function() {
       expect(stack).to.be.an.instanceof(jal.Stack);
@@ -21,6 +20,10 @@ describe("Running Stack Test", function() {
     it('top of stack should be -1', function() {
       expect(stack._top).to.equal(-1);
     });
+
+    it('should have _capacity property to set to given size', function() {
+      expect(stack._capacity).to.equal(10);
+    })
   });
 
   describe('Stack#push()', function() {
@@ -33,9 +36,20 @@ describe("Running Stack Test", function() {
       stack.push(5);
       expect(stack._stack.length).to.equal(1);
     });
+
+    it("should throw error if stack size is full", function() {
+      var st = new jal.Stack(2);
+      st.push(1);
+      st.push(2);
+      expect(st.push.bind(st, "hhgh")).to.throw("Stack overflow")
+    })
   });
 
   describe('Stack#pop()', function() {
+    it('Should throw error if stack is empty', function() {
+      expect(stack.pop.bind(stack)).to.throw("Stack underflow");
+    });
+
     it('Should return last inserted element from stack', function() {
       stack.push(6);
       var item = stack.pop();
@@ -51,15 +65,39 @@ describe("Running Stack Test", function() {
     });
   });
 
-  describe('Stack#getTop()', function() {
+  describe('Stack#peek()', function() {
     it('Should return null if stack is empty', function() {
-      expect(stack.getTop()).to.be.null;
+      expect(stack.peek()).to.be.null;
     });
 
     it('Should return top element on stack', function() {
       stack.push(3);
       stack.push(2);
-      expect(stack.getTop()).to.equal(2);
+      expect(stack.peek()).to.equal(2);
+    });
+  });
+
+  describe('Stack#isEmpty()', function() {
+    it('Should return true if stack is empty', function() {
+      expect(stack.isEmpty()).to.be.true;
+    });
+
+    it('Should return false if stack have elements', function() {
+      stack.push(23);
+      expect(stack.isEmpty()).to.false;
+    });
+  });
+  describe('Stack#isFull()', function() {
+    it('Should return true if stack is full', function() {
+      var st = new jal.Stack(1);
+      st.push(111);
+      expect(st.isFull()).to.be.true;
+    });
+
+    it('Should return false if stack can contain more elements', function() {
+      var st = new jal.Stack(2);
+      st.push(111);
+      expect(stack.isFull()).to.false;
     });
   });
 });
