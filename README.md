@@ -60,7 +60,7 @@ Then, add it as a script tag to your page:
 * <a href="https://cdn.rawgit.com/yashprit/jal/master/doc/html/SingleLinkedList.html" target="_blank">Single LinkedList</a>
 
 ## In progress
-* Tree
+* Binary Tree
 * Double LinkedList
 
 ## Run Test
