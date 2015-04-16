@@ -1,4 +1,4 @@
-#jal  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Dev Dependency Status][daviddmdev-image]][daviddm-url]
+# jal  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Dev Dependency Status][daviddmdev-image]][daviddm-url]
 
 > common data structure implementation in javascript
 
