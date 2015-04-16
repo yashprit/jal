@@ -19,60 +19,98 @@
 
     <h1 class="page-title">Source: Stack.js</h1>
 
-    
 
 
-    
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
 /**
- * constructor of the stack
+ * MAX_SIZE_ALLOWED maximum size allowed of stack
+ * it is 2^32 - 1 accoding to http://stackoverflow.com/questions/6154989/maximum-size-of-an-array-in-javascript
+ * @type {Number}
  */
-function Stack() {
+var MAX_SIZE_ALLOWED = Math.pow(2,32) - 1;
+/**
+ * MINIMUM_TOP
+ * @type {Number}
+ */
+var MINIMUM_TOP = -1;
+/**
+ * @constructor
+ */
+function Stack(size) {
   this._stack = [];
-  this._top = -1;
+  this._top = MINIMUM_TOP;
+  this._capacity = (size &amp;&amp; size &lt;= MAX_SIZE_ALLOWED) ? size : MAX_SIZE_ALLOWED;
 }
 
-Stack.prototype = {
-
-  /**
-   * push element to stack
-   * and increment stack top
-   *
-   * .push(item)
-   *
-   * @param (String) item
-   */
-  push: function push(item) {
-    this._top++;
-    this._stack[this._top] = item;
-  },
-
-  /**
-   * pop element from stack
-   * and decrement stack top, returns poped element
-   *
-   * .pop(item)
-   *
-   * @return (string) item
-   */
-  pop: function pop() {
-    this._top--;
-    return this._stack.pop()
-  },
-
-  /**
-   * returns top element on stack
-   *
-   * .top()
-   *
-   * @return (string) item
-   */
-  getTop: function top() {
-    return this._top !== -1 ? this._stack[this._top] : null;
+/**
+* push element to stack
+* and increment stack top
+*
+* .push(item)
+*
+* @param {String|Number} item
+* @throws {Error} If [stack is full]
+*/
+Stack.prototype.push = function push(item) {
+  if(this.isFull()) {
+    throw new Error("Stack overflow");
   }
+  this._top++;
+  this._stack[this._top] = item;
+};
+
+/**
+ * pop element from stack
+ * and decrement stack top, returns poped element
+ *
+ * .pop()
+ *
+ * @return {String|Number} item that was on top of stack
+ */
+Stack.prototype.pop = function pop() {
+  var item;
+  if(this.isEmpty()) {
+    throw new Error("Stack underflow");
+  }
+  item = this._stack[this._top];
+  delete this._stack[this._top];
+  this._stack.length = this._top;
+  this._top--;
+
+  return item;
+};
+
+/**
+* returns top element on stack
+*
+* .peek()
+*
+* @return {String|Number} item
+*/
+Stack.prototype.peek =  function peek() {
+  return this.isEmpty() ? null : this._stack[this._top];
+};
+
+/**
+* returns if stack is empty
+*
+*.isEmpty()
+*
+*@return {boolean} flag
+*/
+Stack.prototype.isEmpty = function isEmpty() {
+  return (this._top &lt;= MINIMUM_TOP);
+};
+/**
+ * isFull checks if stack is full
+ * @return {Boolean} flag
+ */
+Stack.prototype.isFull = function isFull() {
+  return (this._top + 1 >= this._capacity);
 }
 
 module.exports = Stack;
@@ -86,7 +124,7 @@ module.exports = Stack;
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LinkedList.html">LinkedList</a></li><li><a href="Node.html">Node</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="SingleLinkedList.html">SingleLinkedList</a></li><li><a href="Stack.html">Stack</a></li><li><a href="Tree.html">Tree</a></li></ul>
 </nav>
 
 <br clear="both">

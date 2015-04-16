@@ -19,10 +19,10 @@
 
     <h1 class="page-title">Source: SingleLinkedList.js</h1>
 
-    
 
 
-    
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
@@ -41,7 +41,7 @@ function Node(data) {
  * @constructor
  *
  */
-function LinkedList() {
+function SingleLinkedList() {
   this._head = null;
   this._current = null;
   this._length = 0;
@@ -61,7 +61,7 @@ function LinkedList() {
  * @return {Node} in case of getter otherwise undefined for case of setter
  *
  */
-LinkedList.prototype.first = function first(data) {
+SingleLinkedList.prototype.first = function first(data) {
   if (data) {
     var node = new Node(data);
     if (!this._head) {
@@ -89,7 +89,7 @@ LinkedList.prototype.first = function first(data) {
  *
  * @return {Node} in case of getter otherwise undefined for case of setter
  */
-LinkedList.prototype.last = function last(data) {
+SingleLinkedList.prototype.last = function last(data) {
   if (data) {
     var node = new Node(data);
     if (!this._head) {
@@ -107,7 +107,7 @@ LinkedList.prototype.last = function last(data) {
 /**
  * @alias last
  */
-LinkedList.prototype.append = function append(data) {
+SingleLinkedList.prototype.append = function append(data) {
   var args = Array.prototype.slice.call(arguments, 0);
   this.last.apply(this, args);
 };
@@ -115,7 +115,7 @@ LinkedList.prototype.append = function append(data) {
 /**
  * @alias last
  */
-LinkedList.prototype.push = function push() {
+SingleLinkedList.prototype.push = function push() {
   var args = Array.prototype.slice.call(arguments, 0);
   this.last.apply(this, args);
 };
@@ -128,7 +128,7 @@ LinkedList.prototype.push = function push() {
  * @param {String|Number} data value to be inserted
  * @param {Number} index inserting
  */
-LinkedList.prototype.after = function after(index, data) {
+SingleLinkedList.prototype.after = function after(index, data) {
   if (index &lt; 0) {
     throw new Error("invalid index");
   }
@@ -162,7 +162,7 @@ LinkedList.prototype.after = function after(index, data) {
  * @param {Number} index add elemnet before this index
  * @param {String|Number} value of node
  */
-LinkedList.prototype.before = function before(index, data) {
+SingleLinkedList.prototype.before = function before(index, data) {
   if (index &lt; 0) {
     throw new Error("invalid index");
   }
@@ -198,7 +198,7 @@ LinkedList.prototype.before = function before(index, data) {
  * @returns {Node} return node at given index
  *
  */
-LinkedList.prototype.at = function at(index) {
+SingleLinkedList.prototype.at = function at(index) {
   return this._getNth(index);
 }
 
@@ -207,10 +207,10 @@ LinkedList.prototype.at = function at(index) {
  *
  * .pop()
  *
- * @returns {Node} last Node from LinkedList
+ * @returns {Node} last Node from SingleLinkedList
  *
  */
-LinkedList.prototype.pop = function pop() {
+SingleLinkedList.prototype.pop = function pop() {
   if (this.size() === 0) {
     throw new Error("linkedlist size is zero");
   }
@@ -238,7 +238,7 @@ LinkedList.prototype.pop = function pop() {
  * @returns void
  *
  */
-LinkedList.prototype.removeAt = function removeAt(index) {
+SingleLinkedList.prototype.removeAt = function removeAt(index) {
   if (index &lt; 0 || index > this.size()) {
     throw new Error("index is not bound in linked list");
   }
@@ -260,14 +260,14 @@ LinkedList.prototype.removeAt = function removeAt(index) {
 
 /**
  *
- * Print LinkedList
+ * Print SingleLinkedList
  *
  * .print()
  *
  * @return {String} Array like representation
  *
  */
-LinkedList.prototype.print = function print() {
+SingleLinkedList.prototype.print = function print() {
   var arr = []
   var first = this._head;
   while (first) {
@@ -286,7 +286,7 @@ LinkedList.prototype.print = function print() {
  * @return {String} Array like representation
  *
  */
-LinkedList.prototype.toString = function toString() {
+SingleLinkedList.prototype.toString = function toString() {
   return this.print();
 }
 
@@ -297,7 +297,7 @@ LinkedList.prototype.toString = function toString() {
  *
  * @return {Number}
  */
-LinkedList.prototype.size = function size() {
+SingleLinkedList.prototype.size = function size() {
   return this._length;
 }
 
@@ -309,7 +309,7 @@ LinkedList.prototype.size = function size() {
  * @return {void}
  *
  */
-LinkedList.prototype.createCircular = function createCircular(data) {
+SingleLinkedList.prototype.createCircular = function createCircular(data) {
   var node = new Node(data);
   if (!this._head) {
     this._head = this._current = node;
@@ -329,7 +329,7 @@ LinkedList.prototype.createCircular = function createCircular(data) {
  * @returns {Boolean} this linkedlist is circular
  *
  */
-LinkedList.prototype.isCircular = function isCircular() {
+SingleLinkedList.prototype.isCircular = function isCircular() {
   if (this._head == null) {
     return false;
   }
@@ -354,7 +354,7 @@ LinkedList.prototype.isCircular = function isCircular() {
  *
  * @return {Node}
  */
-LinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
+SingleLinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
 
 }
 
@@ -368,7 +368,7 @@ LinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
  * @returns {Node} it return node
  *
  */
-LinkedList.prototype._getNth = function(index) {
+SingleLinkedList.prototype._getNth = function(index) {
   var currentIndex = 0;
   var first = this._head;
   while (first) {
@@ -380,7 +380,7 @@ LinkedList.prototype._getNth = function(index) {
   }
 }
 
-module.exports = LinkedList;
+module.exports = SingleLinkedList;
 </code></pre>
         </article>
     </section>
@@ -391,7 +391,7 @@ module.exports = LinkedList;
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LinkedList.html">LinkedList</a></li><li><a href="Node.html">Node</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="SingleLinkedList.html">SingleLinkedList</a></li><li><a href="Stack.html">Stack</a></li><li><a href="Tree.html">Tree</a></li></ul>
 </nav>
 
 <br clear="both">
