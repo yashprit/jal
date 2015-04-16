@@ -4,27 +4,56 @@
 
 
 ## Install
+
+### npm
 [![NPM](https://nodei.co/npm/jal.png?mini=true)](https://nodei.co/npm/jal/)
 
 ```sh
 $ npm install --save jal
 ```
 
+### Bower
+```sh
+$ bower install --save jal
+```
 
-## Usage
+## Getting started
+
+### npm
+
+```sh
+$ npm install jal
+```
 
 ```js
-//On NodeJS
+//Then require it into any module.
+
 var jal = require('jal');
 
 var linkedList = new jal.SingleLinkedList();
 linkedlist.add(1);
-
-//On Browser
-var linkedlist = new JAL.SingleLinkedList();
-linkedlist.add(2);
-
 ```
+
+### Browser
+
+To use jal from a browser, download dist/jal.{version}.min.js or use a [bower](http://bower.io/search/?q=jal)
+
+```sh
+$ bower install jal
+```
+
+Then, add it as a script tag to your page:
+
+```js
+<script src="jal.min.js"></script>
+<script>
+  var linkedlist = new JAL.SingleLinkedList();
+  linkedlist.add(2);
+</script>
+```
+
+> If you're using browserify, the jal npm module also works from the browser.
+
 
 ## What's been implemented:
 * <a href="https://cdn.rawgit.com/yashprit/jal/master/doc/html/Stack.html" target="_blank">Stack</a>
@@ -57,4 +86,3 @@ MIT © [Yashprit](yashprit.github.io)
 [daviddm-url]: https://david-dm.org/yashprit/jal
 [bower-url]: http://bower.io/search/?q=owner:yashprit
 [bower-image]: https://badge.fury.io/bo/jal@1x.png
-
