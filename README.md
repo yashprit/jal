@@ -27,8 +27,8 @@ linkedlist.add(2);
 ```
 
 ## What's been implemented:
-* <a href="https://rawgit.com/yashprit/jal/master/doc/html/Stack.html" target="_blank">Stack</a>
-* <a href="https://rawgit.com/yashprit/jal/master/doc/html/SingleLinkedList.html" target="_blank">Single LinkedList</a>
+* <a href="https://cdn.rawgit.com/yashprit/jal/master/doc/html/Stack.html" target="_blank">Stack</a>
+* <a href="https://cdn.rawgit.com/yashprit/jal/master/doc/html/SingleLinkedList.html" target="_blank">Single LinkedList</a>
 
 ## In progress
 * Tree
