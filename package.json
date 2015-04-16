@@ -26,7 +26,6 @@
     "Queue",
     "LinkedList"
   ],
-  "dependencies": {},
   "devDependencies": {
     "browserify": "^9.0.3",
     "chai": "^2.1.0",
@@ -36,11 +35,11 @@
     "deglobalify": "^0.2.0",
     "gulp": "^3.8.11",
     "gulp-clean": "^0.3.1",
-    "gulp-cli": "^0.1.5",
+    "gulp-cli": "^0.2.0",
     "gulp-filesize": "0.0.6",
     "gulp-header": "^1.2.2",
     "gulp-jsdoc": "^0.1.4",
-    "gulp-jsdoc-to-markdown": "^0.1.6",
+    "gulp-jsdoc-to-markdown": "^1.0.2",
     "gulp-jshint": "^1.9.2",
     "gulp-mocha": "^2.0.0",
     "gulp-rename": "^1.2.0",
@@ -52,7 +51,7 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0",
-    "watchify": "^2.4.0"
+    "watchify": "^3.1.1"
   },
   "scripts": {
     "test": "gulp test",

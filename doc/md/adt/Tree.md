@@ -1,128 +1,148 @@
 <a name="Tree"></a>
-#class: Tree
-**Members**
+## Tree
+**Kind**: global class  
 
-* [class: Tree](#Tree)
-  * [tree.size()](#Tree#size)
-  * [tree.isEmpty()](#Tree#isEmpty)
-  * [tree.root(node)](#Tree#root)
-  * [tree.isRoot()](#Tree#isRoot)
-  * [tree.parent(position)](#Tree#parent)
-  * [tree.children(position)](#Tree#children)
-  * [tree.isInternal(position)](#Tree#isInternal)
-  * [tree.isExternal(node)](#Tree#isExternal)
-  * [tree.isRoot(node)](#Tree#isRoot)
-  * [tree.elements()](#Tree#elements)
-  * [tree.positions()](#Tree#positions)
-  * [tree.replace(positionTo, positionFrom)](#Tree#replace)
-  * [tree.add(data, position)](#Tree#add)
-  * [tree.remove(position)](#Tree#remove)
+* [Tree](#Tree)
+  * [.size()](#Tree#size) ⇒ <code>Number</code>
+  * [.isEmpty()](#Tree#isEmpty) ⇒ <code>Boolean</code>
+  * [.root(node)](#Tree#root) ⇒ <code>Object</code>
+  * [.isRoot()](#Tree#isRoot) ⇒ <code>Boolean</code>
+  * [.parent(position)](#Tree#parent) ⇒ <code>Object</code>
+  * [.children(position)](#Tree#children) ⇒ <code>Object</code>
+  * [.isInternal(position)](#Tree#isInternal) ⇒ <code>Boolean</code>
+  * [.isExternal(node)](#Tree#isExternal) ⇒ <code>Boolean</code>
+  * [.isRoot(node)](#Tree#isRoot) ⇒ <code>Boolean</code>
+  * [.elements()](#Tree#elements) ⇒ <code>Object</code>
+  * [.positions()](#Tree#positions) ⇒ <code>Object</code>
+  * [.replace(positionTo, positionFrom)](#Tree#replace) ⇒ <code>void</code>
+  * [.add(data, position)](#Tree#add) ⇒ <code>void</code>
+  * [.remove(position)](#Tree#remove) ⇒ <code>Void</code>
 
 <a name="Tree#size"></a>
-##tree.size()
+### tree.size() ⇒ <code>Number</code>
 Show size of current tree
 
-**Returns**: `Number` - return size of tree  
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Number</code> - return size of tree  
 <a name="Tree#isEmpty"></a>
-##tree.isEmpty()
+### tree.isEmpty() ⇒ <code>Boolean</code>
 Tell tree is empty or not
 
-**Returns**: `Boolean` - tree is empty ot not  
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Boolean</code> - tree is empty ot not  
 <a name="Tree#root"></a>
-##tree.root(node)
+### tree.root(node) ⇒ <code>Object</code>
 return root node of tree
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Object</code> - root node position  
 
-- node `Object` - node  
+| Param | Type | Description |
+| --- | --- | --- |
+| node | <code>Object</code> | node |
 
-**Returns**: `Object` - root node position  
 <a name="Tree#isRoot"></a>
-##tree.isRoot()
+### tree.isRoot() ⇒ <code>Boolean</code>
 return current node is root or not
 
-**Returns**: `Boolean` - return node is root or not  
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Boolean</code> - return node is root or not  
 <a name="Tree#parent"></a>
-##tree.parent(position)
+### tree.parent(position) ⇒ <code>Object</code>
 return parent of passsed node
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Object</code> - return parent of node  
 
-- position `Object` - position of node  
+| Param | Type | Description |
+| --- | --- | --- |
+| position | <code>Object</code> | position of node |
 
-**Returns**: `Object` - return parent of node  
 <a name="Tree#children"></a>
-##tree.children(position)
+### tree.children(position) ⇒ <code>Object</code>
 return children of node
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Object</code> - return Iterator or list of children  
 
-- position `Object` - position of node  
+| Param | Type | Description |
+| --- | --- | --- |
+| position | <code>Object</code> | position of node |
 
-**Returns**: `Object` - return Iterator or list of children  
 <a name="Tree#isInternal"></a>
-##tree.isInternal(position)
+### tree.isInternal(position) ⇒ <code>Boolean</code>
 return node is internal or not
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Boolean</code> - return node is internal or not  
 
-- position `Object` - node is internal or not  
+| Param | Type | Description |
+| --- | --- | --- |
+| position | <code>Object</code> | node is internal or not |
 
-**Returns**: `Boolean` - return node is internal or not  
 <a name="Tree#isExternal"></a>
-##tree.isExternal(node)
+### tree.isExternal(node) ⇒ <code>Boolean</code>
 return node is external or not
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Boolean</code> - return true or false based on condition matched  
 
-- node `Object` - node to check  
+| Param | Type | Description |
+| --- | --- | --- |
+| node | <code>Object</code> | node to check |
 
-**Returns**: `Boolean` - return true or false based on condition matched  
 <a name="Tree#isRoot"></a>
-##tree.isRoot(node)
+### tree.isRoot(node) ⇒ <code>Boolean</code>
 is node passed is root node or not
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Boolean</code> - return true/false based on condition  
 
-- node `Object` - node to check  
+| Param | Type | Description |
+| --- | --- | --- |
+| node | <code>Object</code> | node to check |
 
-**Returns**: `Boolean` - return true/false based on condition  
 <a name="Tree#elements"></a>
-##tree.elements()
+### tree.elements() ⇒ <code>Object</code>
 get all tree element starting from root
 
-**Returns**: `Object` - Iterator  
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Object</code> - Iterator  
 <a name="Tree#positions"></a>
-##tree.positions()
+### tree.positions() ⇒ <code>Object</code>
 get all tree element starting from root
 
-**Returns**: `Object` - Iterator  
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Object</code> - Iterator  
 <a name="Tree#replace"></a>
-##tree.replace(positionTo, positionFrom)
+### tree.replace(positionTo, positionFrom) ⇒ <code>void</code>
 [replace description]
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
 
-- positionTo `Object` - replace to  
-- positionFrom `Object` - replace with  
+| Param | Type | Description |
+| --- | --- | --- |
+| positionTo | <code>Object</code> | replace to |
+| positionFrom | <code>Object</code> | replace with |
 
-**Returns**: `void`  
 <a name="Tree#add"></a>
-##tree.add(data, position)
+### tree.add(data, position) ⇒ <code>void</code>
 Add node to tree
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
 
-- data `Number` | `String` - data to be added in tree  
-- position `Number` - add node provided position  
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>Number</code> &#124; <code>String</code> | data to be added in tree |
+| position | <code>Number</code> | add node provided position |
 
-**Returns**: `void`  
 <a name="Tree#remove"></a>
-##tree.remove(position)
+### tree.remove(position) ⇒ <code>Void</code>
 remove node from tree
 
-**Params**
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
 
-- position `Number` - remove node from position  
+| Param | Type | Description |
+| --- | --- | --- |
+| position | <code>Number</code> | remove node from position |
 
-**Returns**: `Void`  
