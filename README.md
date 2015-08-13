@@ -45,7 +45,7 @@ $ bower install jal
 Then, add it as a script tag to your page:
 
 ```js
-<script src="jal.min.js"></script>
+<script src="jal.js"></script>
 <script>
   var linkedlist = new JAL.SingleLinkedList();
   linkedlist.add(2);
