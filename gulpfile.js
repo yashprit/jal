@@ -179,3 +179,4 @@ gulp.task('build', ['lint', 'test', 'doc', 'clean', 'browserify']);
 gulp.task('build-es6', ['lint', 'test', 'doc', 'commonjs-bundle']);
 gulp.task('default', ['lint', 'test', 'watch']);
 gulp.task('doc', ['docs:md', 'docs:html']);
+
