@@ -118,7 +118,6 @@ gulp.task('commonjs-bundle',['bundle-commonjs-clean','es6-commonjs'], function()
       year: getYear()
     }))
     .pipe(gulp.dest('dist'))
-    //.pipe(filesize())
     .pipe(uglify({
       mangle: false,
       output: {
