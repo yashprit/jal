@@ -1,5 +1,5 @@
 /**
- * MIT (c) Yashprit 2015
+ * MIT Copyright (c) Yashprit 2015
  *
  * JAL a data structure library
  *
@@ -36,20 +36,16 @@
 
 module.exports = {
   SingleLinkedList: require("./adt/SingleLinkedList"),
-  Stack: require("./adt/Stack")
+  Stack: require("./adt/Stack"),
+  CircularLinkedList: require("./adt/CircularLinkedList")
 }
 
 
-},{"./adt/SingleLinkedList":2,"./adt/Stack":3}],2:[function(require,module,exports){
-'use strict';
-// Problems http://cslibrary.stanford.edu/105/
-// http://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
-
+},{"./adt/CircularLinkedList":2,"./adt/SingleLinkedList":3,"./adt/Stack":4}],2:[function(require,module,exports){
 /**
  * @constructor
  */
-
-function Node(data, next) {
+function Node(data) {
   this._data = data;
   this._next = null;
 };
@@ -58,48 +54,74 @@ function Node(data, next) {
  * @constructor
  *
  */
-
-function LinkedList() {
+function CircularLinkedList() {
   this._head = null;
   this._current = null;
   this._length = 0;
 };
 
 /**
- * internal method get particular index node from linkedList
+ * Utility method to create circular linkedlist
  *
- * @private
+ * .createCircular()
  *
- * @param {Number} index of node
+ * @return {void}
  *
- * @returns it return node
- * @type Node
  */
-LinkedList.prototype._getNth = function(index) {
-  var currentIndex = 0;
-  var first = this._head;
-  while (first) {
-    if (currentIndex === index) {
-      return first;
-    }
-    first = first.next;
-    currentIndex++;
+
+CircularLinkedList.prototype.add= function createCircular(data) {
+  var node = new Node(data);
+  if (!this._head) {
+    this._head = this._current = node;
+    node._next = this._head;
+  } else {
+    this._current.next = node;
+    this._current = node;
+    node._next = this._head;
   }
 }
 
+module.exports = CircularLinkedList;
+
+
+},{}],3:[function(require,module,exports){
+'use strict';
+// Problems http://cslibrary.stanford.edu/105/
+// http://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
+
 /**
- * add node to last in linkedlist, this is overloaded version
+ * @constructor
+ */
+function Node(data) {
+  this._data = data;
+  this._next = null;
+};
+
+/**
+ * @constructor
+ *
+ */
+function SingleLinkedList() {
+  this._head = null;
+  this._current = null;
+  this._length = 0;
+};
+
+/**
+ * Overloaded Method
+ *
+ * insert node at first of linkedlist, this is overloaded version
+ * if no arguments passed than it will return Node otherwise set Node
  *
  * .first() get refernce of first value from linkedlist
  * .first(data) set node at first in linkedlist
  *
- * @private
+ * @param {String|Number|undefined} data is either String or Number
  *
- * @param {String|Number|undefined} data part of Node
+ * @return {Node} in case of getter otherwise undefined for case of setter
  *
- * @return {Node} in case if its not set
  */
-LinkedList.prototype.first = function last(data) {
+SingleLinkedList.prototype.first = function first(data) {
   if (data) {
     var node = new Node(data);
     if (!this._head) {
@@ -115,16 +137,19 @@ LinkedList.prototype.first = function last(data) {
 };
 
 /**
- * insert node at first of linkedlist, this is overloaded version
+ * Overloaded Method
  *
- * .last() get refernce of first value from linkedlist
- * .last(data) set node at last
+ * insert node at last of linkedlist
+ * no arguments passed than it will return Node otherwise set Node
+ *
+ * .last(data) set node at last in linkedlist
+ * .last() get refernce of last value from linkedlist
  *
  * @param {String|Number|undefined} data either String or Number
  *
- * @return {Node} in case if its not set
+ * @return {Node} in case of getter otherwise undefined for case of setter
  */
-LinkedList.prototype.last = function first(data) {
+SingleLinkedList.prototype.last = function last(data) {
   if (data) {
     var node = new Node(data);
     if (!this._head) {
@@ -140,17 +165,19 @@ LinkedList.prototype.last = function first(data) {
 };
 
 /**
- * Alias for last
+ * @alias last
  */
-LinkedList.prototype.append = function append(data) {
-  this.last(argument);
+SingleLinkedList.prototype.append = function append(data) {
+  var args = Array.prototype.slice.call(arguments, 0);
+  this.last.apply(this, args);
 };
 
 /**
- * Alias for last
+ * @alias last
  */
-LinkedList.prototype.push = function push() {
-  this.last(argument);
+SingleLinkedList.prototype.push = function push() {
+  var args = Array.prototype.slice.call(arguments, 0);
+  this.last.apply(this, args);
 };
 
 /**
@@ -158,15 +185,15 @@ LinkedList.prototype.push = function push() {
  *
  * .after(index, data)
  *
- * @param {String|Number} data, value to be inserted
- * @param {Number} index, inserting
+ * @param {String|Number} data value to be inserted
+ * @param {Number} index inserting
  */
-LinkedList.prototype.after = function after(index, data) {
+SingleLinkedList.prototype.after = function after(index, data) {
   if (index < 0) {
     throw new Error("invalid index");
   }
 
-  if (this.count() < index) {
+  if (this.size() < index) {
     throw new Error("index should be less than count");
   }
 
@@ -192,15 +219,15 @@ LinkedList.prototype.after = function after(index, data) {
  *
  * .before(index, data)
  *
- * @param {Number} index, add elemnet before this index
- * @param {String|Number}, value of node
+ * @param {Number} index add elemnet before this index
+ * @param {String|Number} value of node
  */
-LinkedList.prototype.before = function before(index, data) {
+SingleLinkedList.prototype.before = function before(index, data) {
   if (index < 0) {
     throw new Error("invalid index");
   }
 
-  if (this.count() < index) {
+  if (this.size() < index) {
     throw new Error("index should be less than count");
   }
 
@@ -228,10 +255,10 @@ LinkedList.prototype.before = function before(index, data) {
  *
  * @param {Number} index of node
  *
- * @returns return node at given index
- * @type Node
+ * @returns {Node} return node at given index
+ *
  */
-LinkedList.prototype.at = function at(index) {
+SingleLinkedList.prototype.at = function at(index) {
   return this._getNth(index);
 }
 
@@ -240,10 +267,13 @@ LinkedList.prototype.at = function at(index) {
  *
  * .pop()
  *
- * @returns last Node from LinkedList
- * @type Node
+ * @returns {Node} last Node from SingleLinkedList
+ *
  */
-LinkedList.prototype.pop = function pop() {
+SingleLinkedList.prototype.pop = function pop() {
+  if (this.size() === 0) {
+    throw new Error("linkedlist size is zero");
+  }
   var first = this._head;
   var index = 0;
   while (first) {
@@ -266,10 +296,69 @@ LinkedList.prototype.pop = function pop() {
  * @param {Number} index of Node that need to be removed
  *
  * @returns void
- * @type undefined
+ *
  */
-LinkedList.prototype.removeAt = function removeAt(index) {
+SingleLinkedList.prototype.removeAt = function removeAt(index) {
+  if (index < 0 || index > this.size()) {
+    throw new Error("index is not bound in linked list");
+  }
 
+  var iterator = this._head;
+  var currentIndex = 0;
+  while (iterator) {
+    if (currentIndex === index) {
+      this._head = iterator._next;
+      iterator._next = null;
+      this._length--;
+      return iterator;
+    } else {
+      iterator = iterator._next;
+      currentIndex++;
+    }
+  }
+}
+
+/**
+ *
+ * Print SingleLinkedList
+ *
+ * .print()
+ *
+ * @return {String} Array like representation
+ *
+ */
+SingleLinkedList.prototype.print = function print() {
+  var arr = []
+  var first = this._head;
+  while (first) {
+    arr.push(first._data);
+    first = first._next;
+  }
+  return "[" + arr.join(",") + "]";
+}
+
+/**
+ *
+ * overinding toString method it also alias to #print()
+ *
+ * .toString()
+ *
+ * @return {String} Array like representation
+ *
+ */
+SingleLinkedList.prototype.toString = function toString() {
+  return this.print();
+}
+
+/**
+ * Get size of linkedList
+ *
+ * .size()
+ *
+ * @return {Number}
+ */
+SingleLinkedList.prototype.size = function size() {
+  return this._length;
 }
 
 /**
@@ -281,105 +370,122 @@ LinkedList.prototype.removeAt = function removeAt(index) {
  *
  * @return {Node}
  */
-LinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
+SingleLinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
 
 }
 
 /**
- * Print LinkedList
+ * internal method get particular index node from linkedList
  *
- * .print()
+ * @private
  *
- * @returns all linkedlist
- * @type String
- */
-LinkedList.prototype.print = function print() {
-
-}
-
-/**
- * Get size of linkedList
+ * @param {Number} index of node
  *
- * .size()
- *
- * @return {Number}
- */
-LinkedList.prototype.count = function size() {
-  return this._length;
-}
-
-/**
- * Utility method to create circular linkedlist
+ * @returns {Node} it return node
  *
  */
-LinkedList.prototype.createCircular = function createCircular() {
-
-}
-
-/**
- * Check for circular linkedlist
- *
- * .isCircular()
- *
- * @returns this linkedlist is circular
- * @type Boolean
- */
-LinkedList.prototype.isCircular = function isCircular() {
-
-}
-
-module.exports = LinkedList;
-
-
-},{}],3:[function(require,module,exports){
-'use strict';
-
-/**
- * constructor of the stack
- */
-function Stack() {
-  this._stack = [];
-  this._top = -1;
-}
-
-Stack.prototype = {
-
-  /**
-   * push element to stack
-   * and increment stack top
-   *
-   * .push(item)
-   *
-   * @param (String) item
-   */
-  push: function push(item) {
-    this._top++;
-    this._stack[this._top] = item;
-  },
-
-  /**
-   * pop element from stack
-   * and decrement stack top, returns poped element
-   *
-   * .pop(item)
-   *
-   * @return (string) item
-   */
-  pop: function pop() {
-    this._top--;
-    return this._stack.pop()
-  },
-
-  /**
-   * returns top element on stack
-   *
-   * .top()
-   *
-   * @return (string) item
-   */
-  getTop: function top() {
-    return this._top !== -1 ? this._stack[this._top] : null;
+SingleLinkedList.prototype._getNth = function(index) {
+  var currentIndex = 0;
+  var first = this._head;
+  while (first) {
+    if (currentIndex === index) {
+      return first;
+    }
+    first = first._next;
+    currentIndex++;
   }
+}
+
+module.exports = SingleLinkedList;
+
+
+},{}],4:[function(require,module,exports){
+'use strict';
+/**
+ * MAX_SIZE_ALLOWED maximum size allowed of stack
+ * it is 2^32 - 1 accoding to http://stackoverflow.com/questions/6154989/maximum-size-of-an-array-in-javascript
+ * @type {Number}
+ */
+var MAX_SIZE_ALLOWED = Math.pow(2,32) - 1;
+/**
+ * MINIMUM_TOP 
+ * @type {Number}
+ */
+var MINIMUM_TOP = -1;
+/**
+ * @constructor 
+ */
+function Stack(size) {
+  this._stack = [];
+  this._top = MINIMUM_TOP;
+  this._capacity = (size && size <= MAX_SIZE_ALLOWED) ? size : MAX_SIZE_ALLOWED;
+}
+
+/**
+* push element to stack
+* and increment stack top
+*
+* .push(item)
+*
+* @param {String|Number} item
+* @throws {Error} If [stack is full]
+*/
+Stack.prototype.push = function push(item) {
+  if(this.isFull()) {
+    throw new Error("Stack overflow");
+  }
+  this._top++;
+  this._stack[this._top] = item;
+};
+
+/**
+ * pop element from stack
+ * and decrement stack top, returns poped element
+ *
+ * .pop()
+ * 
+ * @return {String|Number} item that was on top of stack
+ */ 
+Stack.prototype.pop = function pop() {
+  var item;
+  if(this.isEmpty()) {
+    throw new Error("Stack underflow");
+  }
+  item = this._stack[this._top];
+  delete this._stack[this._top];
+  this._stack.length = this._top;
+  this._top--;
+  
+  return item;
+};
+
+/**
+* returns top element on stack
+*   
+* .peek()
+*
+* @return {String|Number} item
+*/
+Stack.prototype.peek =  function peek() {
+  return this.isEmpty() ? null : this._stack[this._top];
+};
+
+/**
+* returns if stack is empty
+* 
+*.isEmpty()
+*
+*@return {boolean} flag
+*/
+Stack.prototype.isEmpty = function isEmpty() {
+  return (this._top <= MINIMUM_TOP);
+};
+/**
+ * isFull checks if stack is full
+ * @return {Boolean} flag
+ */
+Stack.prototype.isFull = function isFull() {
+  return (this._top + 1 >= this._capacity);
 }
 
 module.exports = Stack;

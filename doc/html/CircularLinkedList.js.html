@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Index</title>
+    <title>JSDoc: Source: CircularLinkedList.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,30 +17,57 @@
 
 <div id="main">
 
-    <h1 class="page-title">Index</h1>
+    <h1 class="page-title">Source: CircularLinkedList.js</h1>
 
     
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @constructor
+ */
+function Node(data) {
+  this._data = data;
+  this._next = null;
+};
 
+/**
+ * @constructor
+ *
+ */
+function CircularLinkedList() {
+  this._head = null;
+  this._current = null;
+  this._length = 0;
+};
 
-    <h3> </h3>
+/**
+ * Utility method to create circular linkedlist
+ *
+ * .createCircular()
+ *
+ * @return {void}
+ *
+ */
 
+CircularLinkedList.prototype.add= function createCircular(data) {
+  var node = new Node(data);
+  if (!this._head) {
+    this._head = this._current = node;
+    node._next = this._head;
+  } else {
+    this._current.next = node;
+    this._current = node;
+    node._next = this._head;
+  }
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = CircularLinkedList;
+</code></pre>
+        </article>
+    </section>
 
 
 

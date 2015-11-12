@@ -23,7 +23,9 @@ var
   filesize = require('gulp-filesize'),
   header = require("gulp-header"),
   pkg = require('./package.json'),
-  jsdoc2md = require("gulp-jsdoc-to-markdown");
+  jsdoc2md = require("gulp-jsdoc-to-markdown"),
+  del = require('del'),
+  babel = require('gulp-babel');
 
 
 // Get version from package.json
@@ -91,6 +93,47 @@ gulp.task("docs:md", function() {
     .pipe(gulp.dest("./doc/md"));
 });
 
+gulp.task('clean-temp', function(){
+  return del(['dest']);
+});
+
+gulp.task('es6-commonjs',['clean-temp'], function(){
+  return gulp.src(['lib/*.es6.js','lib/**/*.es6.js'])
+    .pipe(babel())
+    .pipe(gulp.dest('dest/temp'));
+});
+
+gulp.task('bundle-commonjs-clean', function(){
+  return del(['es5/commonjs']);
+});
+
+gulp.task('commonjs-bundle',['bundle-commonjs-clean','es6-commonjs'], function(){
+  return browserify(['dest/temp/bootstrap.js']).bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(rename('jal.js'))
+    .pipe(header(getCopyright(), {
+      version: getVersion(),
+      year: getYear()
+    }))
+    .pipe(gulp.dest('dist'))
+    //.pipe(filesize())
+    .pipe(uglify({
+      mangle: false,
+      output: {
+        max_line_len: 1024
+      }
+    }))
+    .pipe(rename(getBundleName()))
+    .pipe(header(getCopyright(), {
+      version: getVersion(),
+      year: getYear()
+    }))
+    .pipe(gulp.dest('dist'))
+    .on('error', gutil.log);
+});
+
 gulp.task('browserify', function() {
   var b = browserify({
     standalone: 'JAL'
@@ -133,5 +176,6 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('build', ['lint', 'test', 'doc', 'clean', 'browserify']);
+gulp.task('build-es6', ['lint', 'test', 'doc', 'commonjs-bundle']);
 gulp.task('default', ['lint', 'test', 'watch']);
 gulp.task('doc', ['docs:md', 'docs:html']);

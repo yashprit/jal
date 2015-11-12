@@ -2,8 +2,6 @@
 var expect = require('chai').expect;
 var jal = require('../lib/Jal.js');
 
-console.log(jal);
-
 describe("Running SingleLinkedList Test", function() {
 
   var sll;
@@ -220,21 +218,4 @@ describe("Running SingleLinkedList Test", function() {
     });
   });
 
-  describe('SingleLinkedList#createCircular()', function() {
-    it('should create cicular linked list', function() {
-      sll.createCircular(2);
-      sll.createCircular(3);
-      sll.createCircular(4);
-      expect(sll._first).not.to.be.null;
-    });
-  });
-
-  describe('SingleLinkedList#isCircular()', function() {
-    it('should return true', function() {
-      sll.createCircular(2);
-      sll.createCircular(3);
-      sll.createCircular(4);
-      expect(sll.isCircular()).to.be.true;
-    });
-  });
 });

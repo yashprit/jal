@@ -10,13 +10,14 @@
     "name": "Yashprit",
     "email": "yashprit@gmail.com"
   },
+  "main": "dist/jal.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/yashprit/jal"
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "dist/jal.js"
   ],
   "keywords": [
     "data-structure-in-javascript",
@@ -33,7 +34,9 @@
     "debowerify": "^1.2.0",
     "decomponentify": "^0.1.0",
     "deglobalify": "^0.2.0",
+    "del": "^2.0.2",
     "gulp": "^3.8.11",
+    "gulp-babel": "^6.1.0",
     "gulp-clean": "^0.3.1",
     "gulp-cli": "^0.2.0",
     "gulp-filesize": "0.0.6",
