@@ -1,12 +1,12 @@
 /**
- * MIT Copyright (c) Yashprit 2015
+ * MIT Copyright (c) Yashprit 2017
  *
  * JAL a data structure library
  *
  * https://github.com/yashprit
- * http://yashprit.github.io/
+ * http://yashprit.com/
  *
- * Version: 0.0.0-alpha
+ * Version: 0.0.1
  *
  * Source Code https://github.com/yashprit/jal
  *
@@ -37,11 +37,273 @@
 module.exports = {
   SingleLinkedList: require("./adt/SingleLinkedList"),
   Stack: require("./adt/Stack"),
-  CircularLinkedList: require("./adt/CircularLinkedList")
+  CircularLinkedList: require("./adt/CircularLinkedList"),
+  BinarySearchTree: require("./adt/BinaryTree")
+}
+
+},{"./adt/BinaryTree":2,"./adt/CircularLinkedList":3,"./adt/SingleLinkedList":4,"./adt/Stack":5}],2:[function(require,module,exports){
+'use strict'
+
+
+/**
+ * Private Helper method for BinaryTree
+ *
+ */
+
+var dataHolder = [];
+
+/**
+ * @param {BinaryTreeNode}
+ * update global array for inorder, using recursive style
+ */
+var inorderHelper = function(node){
+  if(node){
+    inorderHelper(node._left);
+    dataHolder.push(node._data);
+    inorderHelper(node._right);
+  }
+}
+
+/**
+ * @param {BinaryTreeNode}
+ * update global array for postorder, using recursive style
+ */
+var postorderHelper = function(node){
+  if(node){
+    postorderHelper(node._left);
+    postorderHelper(node._right);
+    dataHolder.push(node._data);
+  }
+}
+
+/**
+ * @param {BinaryTreeNode}
+ * update global array for preorder, using recursive style
+ */
+var preorderHelper = function(node){
+  if(node){
+    dataHolder.push(node._data);
+    preorderHelper(node._left);
+    preorderHelper(node._right);
+  }
 }
 
 
-},{"./adt/CircularLinkedList":2,"./adt/SingleLinkedList":3,"./adt/Stack":4}],2:[function(require,module,exports){
+
+/**
+ * @Contructor
+ * @param data node value
+ */
+function BinaryTreeNode(data) {
+  this._data = data;
+  this._left = null;
+  this._right = null;
+}
+
+BinaryTreeNode.prototype.getData = function(){
+  return this._data;
+}
+
+
+/**
+ * @constructor
+ */
+function BinaryTree() {
+  this._root = null;
+  this._current = null;
+  this._length = 0;
+}
+
+BinaryTree.type = {
+  INORDER: 'inorder',
+  PREORDER: 'preorder',
+  POSTORDER: 'postorder'
+}
+
+/**
+ * Add node to tree
+ * @param {Number|String} data     data to be added in tree
+ * @param {Number} position add node provided position
+ * @return {void}
+ */
+BinaryTree.prototype.insert = function(data) {
+  if(!((typeof data === 'string' && data.length === 1) || typeof data === 'number')){
+    throw new Error('value should be char or number');
+  }
+
+
+  if(this._root === null){
+    this._root = new BinaryTreeNode(data);
+    return;
+  }
+
+  var newNode = new BinaryTreeNode(data);
+  var currentNode = this._root;
+
+  while(currentNode){
+    if(data < currentNode._data){
+      if(!currentNode._left){
+        currentNode._left = newNode;
+        break;
+      } else {
+         currentNode = currentNode._left;
+      }
+    } else {
+      if(!currentNode._right){
+        currentNode._right = newNode;
+        break;
+      } else {
+        currentNode = currentNode._right;
+      }
+    }
+  }
+}
+
+/**
+ * Show size of current tree
+ * @return {Number} return size of tree
+ */
+BinaryTree.prototype.size = function() {}
+
+/**
+ * Tell tree is empty or not
+ * @return {Boolean} tree is empty ot not
+ */
+BinaryTree.prototype.isEmpty = function() {
+  return root === null;
+}
+
+/**
+ * return root node of tree
+ * @param {Object} node node
+ * @return {Object} root node position
+ */
+BinaryTree.prototype.root = function(node) {}
+
+/**
+ * return current node is root or not
+ * @return {Boolean} return node is root or not
+ */
+BinaryTree.prototype.isRoot = function() {}
+
+/**
+ * return parent of passsed node
+ * @param {Object} position position of node
+ * @return {Object} return parent of node
+ */
+BinaryTree.prototype.parent = function(position) {}
+
+/**
+ * return children of node
+ * @param {Object} position position of node
+ * @return {Object} return Iterator or list of children
+ */
+BinaryTree.prototype.children = function(position) {}
+
+
+/**
+ * return node is internal or not
+ * @param  {Object}  position node is internal or not
+ * @return {Boolean}          return node is internal or not
+ */
+BinaryTree.prototype.isInternal = function(position) {}
+
+/**
+ * return node is external or not
+ * @param  {Object}  node node to check
+ * @return {Boolean}      return true or false based on condition matched
+ */
+BinaryTree.prototype.isExternal = function(node) {}
+
+/**
+ * is node passed is root node or not
+ * @param  {Object}  node node to check
+ * @return {Boolean}      return true/false based on condition
+ */
+BinaryTree.prototype.isRoot = function(node) {}
+
+/**
+ * get all tree element starting from root
+ * @return {Object} Iterator
+ */
+BinaryTree.prototype.elements = function() {}
+
+/**
+ * get all tree element starting from root
+ * @return {Object} Iterator
+ */
+BinaryTree.prototype.positions = function() {}
+
+/**
+ * Traverse binary tree in inorder traversal
+ * * @return {Array} 
+ */
+BinaryTree.prototype.inorder = function(){
+  dataHolder = [];
+  inorderHelper(this._root);
+  return dataHolder;
+}
+
+/**
+ * Traverse binary tree in preorder traversal
+ * * @return {Array} 
+ */
+
+BinaryTree.prototype.preorder = function(){
+  dataHolder = [];
+  preorderHelper(this._root);
+  return dataHolder;
+}
+
+/**
+ * Traverse binary tree in postorder traversal
+ * * @return {Array} 
+ */
+
+BinaryTree.prototype.postorder = function(){
+  dataHolder = [];
+  postorderHelper(this._root);
+  return dataHolder;
+}
+
+
+/**
+ * [replace description]
+ * @param  {Object} positionTo   replace to
+ * @param  {Object} positionFrom replace with
+ * @return {void}
+ */
+BinaryTree.prototype.replace = function(positionTo, positionFrom) {}
+
+BinaryTree.prototype.print = function (type){
+  if(type === BinaryTree.position.POSTORDER){
+    var data = this.postorder();
+  } else   if(type === BinaryTree.position.PREORDER){
+    var data = this.preorder();
+  } else {
+    var data = this.inorder();
+  }
+
+  return('[' + data.join(',') + ']');
+}
+
+/**
+ * remove node from tree
+ * @param  {Number} position remove node from position
+ * @return {Void}
+ */
+BinaryTree.prototype.remove = function(position) {}
+
+BinaryTree.node = BinaryTreeNode;
+
+module.exports = BinaryTree;
+
+},{}],3:[function(require,module,exports){
+/**
+ * Circular Linked List
+ *
+ */
+
 /**
  * @constructor
  */
@@ -68,8 +330,7 @@ function CircularLinkedList() {
  * @return {void}
  *
  */
-
-CircularLinkedList.prototype.add= function createCircular(data) {
+CircularLinkedList.prototype.add = function createCircular(data) {
   var node = new Node(data);
   if (!this._head) {
     this._head = this._current = node;
@@ -83,8 +344,7 @@ CircularLinkedList.prototype.add= function createCircular(data) {
 
 module.exports = CircularLinkedList;
 
-
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 // Problems http://cslibrary.stanford.edu/105/
 // http://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
@@ -362,19 +622,6 @@ SingleLinkedList.prototype.size = function size() {
 }
 
 /**
- * internal method for finding nth element of array from end
- *
- * @private
- *
- * @param  {Number} index specifiy index of linkedlist from end
- *
- * @return {Node}
- */
-SingleLinkedList.prototype._nthFromEnd = function _nthFromEnd(index) {
-
-}
-
-/**
  * internal method get particular index node from linkedList
  *
  * @private
@@ -398,8 +645,7 @@ SingleLinkedList.prototype._getNth = function(index) {
 
 module.exports = SingleLinkedList;
 
-
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 /**
  * MAX_SIZE_ALLOWED maximum size allowed of stack
@@ -408,12 +654,12 @@ module.exports = SingleLinkedList;
  */
 var MAX_SIZE_ALLOWED = Math.pow(2,32) - 1;
 /**
- * MINIMUM_TOP 
+ * MINIMUM_TOP
  * @type {Number}
  */
 var MINIMUM_TOP = -1;
 /**
- * @constructor 
+ * @constructor
  */
 function Stack(size) {
   this._stack = [];
@@ -443,9 +689,9 @@ Stack.prototype.push = function push(item) {
  * and decrement stack top, returns poped element
  *
  * .pop()
- * 
+ *
  * @return {String|Number} item that was on top of stack
- */ 
+ */
 Stack.prototype.pop = function pop() {
   var item;
   if(this.isEmpty()) {
@@ -455,13 +701,13 @@ Stack.prototype.pop = function pop() {
   delete this._stack[this._top];
   this._stack.length = this._top;
   this._top--;
-  
+
   return item;
 };
 
 /**
 * returns top element on stack
-*   
+*
 * .peek()
 *
 * @return {String|Number} item
@@ -470,9 +716,10 @@ Stack.prototype.peek =  function peek() {
   return this.isEmpty() ? null : this._stack[this._top];
 };
 
+
 /**
 * returns if stack is empty
-* 
+*
 *.isEmpty()
 *
 *@return {boolean} flag
@@ -480,6 +727,7 @@ Stack.prototype.peek =  function peek() {
 Stack.prototype.isEmpty = function isEmpty() {
   return (this._top <= MINIMUM_TOP);
 };
+
 /**
  * isFull checks if stack is full
  * @return {Boolean} flag
@@ -489,7 +737,6 @@ Stack.prototype.isFull = function isFull() {
 }
 
 module.exports = Stack;
-
 
 },{}]},{},[1])(1)
 });

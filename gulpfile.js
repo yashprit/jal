@@ -5,7 +5,7 @@ var
   gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   mocha = require('gulp-mocha'),
-  jsdoc = require("gulp-jsdoc"),
+  jsdoc = require("gulp-jsdoc3"),
   browserify = require('browserify'),
   buffer = require('vinyl-buffer'),
   uglify = require('gulp-uglify'),
@@ -69,20 +69,13 @@ gulp.task('watch', function() {
   gulp.watch(['<%= jshint.js.src %>', '<%= jshint.test.src %>'], ['lint', 'test']);
 });
 
-gulp.task('docs:html', function() {
-  gulp.src("./lib/**/*.js")
-    .pipe(jsdoc('./doc/html'))
-});
-
-gulp.task('clean', function() {
-  return gulp.src('build', {
-      read: false
-    })
-    .pipe(clean());
+gulp.task('docs:html', function(cb) {
+  gulp.src(["lib/**/*.js"], {read: false})
+    .pipe(jsdoc(cb))
 });
 
 gulp.task("docs:md", function() {
-  return gulp.src("lib/**/*.js")
+  return gulp.src(["lib/**/*.js"], {read: false})
     .pipe(jsdoc2md())
     .on("error", function(err) {
       gutil.log(gutil.colors.red("jsdoc2md failed"), err.message)
@@ -91,6 +84,13 @@ gulp.task("docs:md", function() {
       path.extname = ".md";
     }))
     .pipe(gulp.dest("./doc/md"));
+});
+
+gulp.task('clean', function() {
+  return gulp.src('build', {
+      read: false
+    })
+    .pipe(clean());
 });
 
 gulp.task('clean-temp', function(){
